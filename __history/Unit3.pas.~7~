@@ -1,0 +1,44 @@
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, ZAbstractTable, ZDataset, ZAbstractRODataset, ZAbstractDataset,
+  ZAbstractConnection, ZConnection;
+
+type
+  TForm3 = class(TForm)
+    NamaInput: TEdit;
+    Label1: TLabel;
+    EmailInput: TEdit;
+    Label2: TLabel;
+    UsernameInput: TEdit;
+    Label3: TLabel;
+    SimpanBT: TButton;
+    EditBT: TButton;
+    HapusBT: TButton;
+    DBGrid1: TDBGrid;
+    ZConnection1: TZConnection;
+    ZQuery1: TZQuery;
+    ZQuery1nama: TZUnicodeStringField;
+    ZQuery1email: TZUnicodeStringField;
+    ZQuery1username: TZUnicodeStringField;
+    DataSource1: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1;
+
+end.

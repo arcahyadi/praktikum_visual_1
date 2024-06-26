@@ -1,0 +1,66 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ZAbstractConnection, ZConnection,
+  Vcl.StdCtrls, Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset,
+  Vcl.Grids, Vcl.DBGrids;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    NamaInput: TEdit;
+    Label3: TLabel;
+    EmailInput: TEdit;
+    SimpanBT: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    ZConnection1: TZConnection;
+    ZQuery1: TZQuery;
+    DataSource1: TDataSource;
+    ZQuery1id_author: TZIntegerField;
+    ZQuery1name: TZUnicodeStringField;
+    ZQuery1email: TZUnicodeStringField;
+    DBGrid1: TDBGrid;
+    procedure SimpanBTClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.SimpanBTClick(Sender: TObject);
+begin
+  if NamaInput.Text = '' then
+  begin
+    MessageDlg('Nama Tidak Boleh Kosong', mtInformation, [mbOK], 0);
+    NamaInput.SetFocus;
+  end
+  else if EmailInput.Text = '' then
+  begin
+    MessageDlg('Email Tidak Boleh Kosong', mtInformation, [mbOK], 0);
+    EmailInput.SetFocus;
+  end;
+  begin
+    ZQuery1.Append;
+    ZQuery1.FieldByName('name').AsString := (NamaInput.Text);
+    ZQuery1.FieldByName('email').AsString := EmailInput.Text;
+    ZQuery1.Post;
+    NamaInput.Text := '';
+    EmailInput.Text := '';
+    NamaInput.SetFocus;
+  end;
+
+end;
+
+end.

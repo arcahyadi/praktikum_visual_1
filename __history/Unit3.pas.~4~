@@ -1,0 +1,61 @@
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TForm3 = class(TForm)
+    NamaInput: TEdit;
+    Label1: TLabel;
+    EmailInput: TEdit;
+    Label2: TLabel;
+    UsernameInput: TEdit;
+    Label3: TLabel;
+    SimpanBT: TButton;
+    EditBT: TButton;
+    HapusBT: TButton;
+    procedure Simpan(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit2;
+
+procedure TForm3.Simpan(Sender: TObject);
+begin
+var
+  ZQueryInsert: TZQuery;
+begin
+  ZQueryInsert := TZQuery.Create(nil);
+  try
+    ZQueryInsert.Connection := ZConnection1; // Pastikan ZConnection1 adalah koneksi Anda ke database
+    ZQueryInsert.SQL.Text := 'INSERT INTO nama_tabel (kolom1, kolom2, kolom3) VALUES (:Value1, :Value2, :Value3)';
+
+    // Mengatur nilai-nilai yang akan diinsert
+    ZQueryInsert.ParamByName('Value1').AsString := Edit1.Text; // Misalnya dari Edit1
+    ZQueryInsert.ParamByName('Value2').AsInteger := StrToInt(Edit2.Text); // Misalnya dari Edit2
+    ZQueryInsert.ParamByName('Value3').AsDate := DateTimePicker1.Date; // Misalnya dari DateTimePicker1
+
+    // Menjalankan query insert
+    ZQueryInsert.ExecSQL;
+
+    // Menampilkan pesan berhasil
+    ShowMessage('Data berhasil disimpan.');
+  finally
+    ZQueryInsert.Free;
+  end;
+end;
+
+end.

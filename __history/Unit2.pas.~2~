@@ -1,0 +1,28 @@
+unit Unit2;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZAbstractTable, ZDataset;
+
+type
+  TDataModule2 = class(TDataModule)
+    ZConnection1: TZConnection;
+    ZTable1: TZTable;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule2: TDataModule2;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
