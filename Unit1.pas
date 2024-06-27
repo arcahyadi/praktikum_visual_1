@@ -30,6 +30,7 @@ type
     procedure SimpanBTClick(Sender: TObject);
     procedure EditBTClick(Sender: TObject);
     procedure HapusBTClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -77,6 +78,12 @@ begin
   end;
 end;
 
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  ZConnection1.Connect;
+  ZQuery1.Open;
+end;
+
 procedure TForm1.HapusBTClick(Sender: TObject);
 begin
 if ZQuery1.RecordCount <=0 then
@@ -115,6 +122,7 @@ begin
     NamaInput.Text := '';
     EmailInput.Text := '';
     idInput.SetFocus;
+    
   end;
 end;
 

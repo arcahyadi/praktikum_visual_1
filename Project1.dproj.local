@@ -9,8 +9,22 @@
     <Transaction>2024/06/26 14:48:42.000.897,=C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2024/06/26 14:49:01.000.851,=C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2024/06/26 17:35:05.000.072,=C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2024/06/26 17:35:23.000.767,C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Unit1.dfm=D:\Uniska semester 2\praktikum_visual_1\Unit1.dfm</Transaction>
-    <Transaction>2024/06/26 17:35:23.000.767,C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Unit1.pas=D:\Uniska semester 2\praktikum_visual_1\Unit1.pas</Transaction>
-    <Transaction>2024/06/26 17:35:37.000.270,C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Project1.dproj=D:\Uniska semester 2\praktikum_visual_1\Project1.dproj</Transaction>
+    <Transaction>2024/06/26 17:35:23.000.767,D:\Uniska semester 2\praktikum_visual_1\Unit1.dfm=C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/06/26 17:35:23.000.767,D:\Uniska semester 2\praktikum_visual_1\Unit1.pas=C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/06/26 17:35:37.000.270,D:\Uniska semester 2\praktikum_visual_1\Project1.dproj=C:\Users\USER\OneDrive\문서\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2024/06/26 20:45:52.420,=D:\Uniska semester 2\praktikum_visual_1\Unit2.pas</Transaction>
+    <Transaction>2024/06/27 10:29:47.989,=D:\Uniska semester 2\praktikum_visual_1\Unit3.pas</Transaction>
+    <Transaction>2024/06/27 11:04:12.182,D:\Uniska semester 2\praktikum_visual_1\MainMenu.pas=D:\Uniska semester 2\praktikum_visual_1\Unit3.pas</Transaction>
+    <Transaction>2024/06/27 11:04:12.182,D:\Uniska semester 2\praktikum_visual_1\MainMenu.dfm=D:\Uniska semester 2\praktikum_visual_1\Unit3.dfm</Transaction>
+    <Transaction>2024/06/27 11:13:43.549,D:\Uniska semester 2\praktikum_visual_1\Buku.dfm=D:\Uniska semester 2\praktikum_visual_1\Unit2.dfm</Transaction>
+    <Transaction>2024/06/27 11:13:43.549,D:\Uniska semester 2\praktikum_visual_1\Buku.pas=D:\Uniska semester 2\praktikum_visual_1\Unit2.pas</Transaction>
+    <Transaction>2024/06/27 11:14:00.610,D:\Uniska semester 2\praktikum_visual_1\Author.dfm=D:\Uniska semester 2\praktikum_visual_1\Unit1.dfm</Transaction>
+    <Transaction>2024/06/27 11:14:00.610,D:\Uniska semester 2\praktikum_visual_1\Author.pas=D:\Uniska semester 2\praktikum_visual_1\Unit1.pas</Transaction>
+    <Transaction>2024/06/27 11:26:04.529,D:\Uniska semester 2\praktikum_visual_1\Unit1.dfm=D:\Uniska semester 2\praktikum_visual_1\Author.dfm</Transaction>
+    <Transaction>2024/06/27 11:26:04.529,D:\Uniska semester 2\praktikum_visual_1\Unit1.pas=D:\Uniska semester 2\praktikum_visual_1\Author.pas</Transaction>
+    <Transaction>2024/06/27 11:26:15.256,D:\Uniska semester 2\praktikum_visual_1\Unit3.dfm=D:\Uniska semester 2\praktikum_visual_1\MainMenu.dfm</Transaction>
+    <Transaction>2024/06/27 11:26:15.256,D:\Uniska semester 2\praktikum_visual_1\Unit3.pas=D:\Uniska semester 2\praktikum_visual_1\MainMenu.pas</Transaction>
+    <Transaction>2024/06/27 11:26:25.949,D:\Uniska semester 2\praktikum_visual_1\Unit2.pas=D:\Uniska semester 2\praktikum_visual_1\Buku.pas</Transaction>
+    <Transaction>2024/06/27 11:26:25.949,D:\Uniska semester 2\praktikum_visual_1\Unit2.dfm=D:\Uniska semester 2\praktikum_visual_1\Buku.dfm</Transaction>
   </Transactions>
 </BorlandProject>
