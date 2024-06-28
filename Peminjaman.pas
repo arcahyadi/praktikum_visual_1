@@ -31,10 +31,15 @@ type
     HapusBTPeminjaman: TButton;
     DBGrid1: TDBGrid;
     SourcePeminjaman: TDataSource;
+    ReportPeminjaman: TButton;
+    QueryPeminjamanid_peminjaman: TZIntegerField;
+    QueryPeminjamannama_member: TZUnicodeStringField;
+    QueryPeminjamanjudul_buku: TZUnicodeStringField;
     procedure FormCreate(Sender: TObject);
     procedure SimpanBTPeminjamanClick(Sender: TObject);
     procedure HapusBTPeminjamanClick(Sender: TObject);
     procedure EditBTPeminjamanClick(Sender: TObject);
+    procedure ReportPeminjamanClick(Sender: TObject);
   private
 
   public
@@ -48,7 +53,7 @@ implementation
 
 {$R *.dfm}
 
-uses Member, Unit1, Unit2, Unit3;
+uses Member, Unit1, Unit2, Unit3, ReportBuku;
 
 procedure TForm5.SimpanBTPeminjamanClick(Sender: TObject);
 var
@@ -97,6 +102,11 @@ begin
         MessageDlg('Error: ' + E.Message, mtError, [mbOK], 0);
     end;
   end;
+end;
+
+procedure TForm5.ReportPeminjamanClick(Sender: TObject);
+begin
+  Form6.QuickRep1.Preview;
 end;
 
 procedure TForm5.EditBTPeminjamanClick(Sender: TObject);
@@ -170,10 +180,8 @@ begin
       ZQuery1.SQL.Text := 'DELETE FROM peminjaman WHERE id_peminjaman = :id_peminjaman';
       ZQuery1.Params.ParamByName('id_peminjaman').AsString := QueryPeminjaman.FieldByName('id_peminjaman').AsString;
       ZQuery1.ExecSQL;
-
       // Provide user feedback
       ShowMessage('Data peminjaman berhasil dihapus.');
-
       // Refresh the data in the grid
       QueryPeminjaman.Close;
       QueryPeminjaman.Open;

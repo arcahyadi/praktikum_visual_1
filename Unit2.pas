@@ -33,10 +33,12 @@ type
     ZQuery1genre: TZUnicodeStringField;
     ZQuery1author_name: TZUnicodeStringField;
     Label6: TLabel;
+    LaporanBuku: TButton;
     procedure FormCreate(Sender: TObject);
     procedure SimpanBTBukuClick(Sender: TObject);
     procedure EditBTBukuClick(Sender: TObject);
     procedure HapusBTBukuClick(Sender: TObject);
+    procedure LaporanBukuClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,7 +52,7 @@ implementation
 
 {$R *.dfm}
 
-uses Member, Peminjaman, Unit1, Unit3;
+uses Member, Peminjaman, Unit1, Unit3, LaporanBuku;
 
 procedure TForm2.FormCreate(Sender: TObject);
 begin
@@ -296,6 +298,11 @@ begin
     // Close the query after usage
     ZQuery2.Close;
   end;
+end;
+
+procedure TForm2.LaporanBukuClick(Sender: TObject);
+begin
+  Form9.QuickRep1.Preview;
 end;
 
 end.

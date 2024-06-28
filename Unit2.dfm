@@ -105,7 +105,7 @@ object Form2: TForm2
     OnClick = SimpanBTBukuClick
   end
   object EditBTBuku: TButton
-    Left = 144
+    Left = 128
     Top = 272
     Width = 75
     Height = 25
@@ -114,10 +114,10 @@ object Form2: TForm2
     OnClick = EditBTBukuClick
   end
   object HapusBTBuku: TButton
-    Left = 249
-    Top = 268
+    Left = 225
+    Top = 272
     Width = 75
-    Height = 33
+    Height = 25
     Caption = 'Hapus'
     TabOrder = 7
     OnClick = HapusBTBukuClick
@@ -170,6 +170,15 @@ object Form2: TForm2
         Width = 150
         Visible = True
       end>
+  end
+  object LaporanBuku: TButton
+    Left = 320
+    Top = 272
+    Width = 75
+    Height = 25
+    Caption = 'Laporan'
+    TabOrder = 9
+    OnClick = LaporanBukuClick
   end
   object ZQuery2: TZQuery
     Connection = BukuCon

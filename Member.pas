@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, ZAbstractRODataset,
+  Vcl.Controls,System.UITypes, Vcl.Forms, Vcl.Dialogs, Data.DB, ZAbstractRODataset,
   ZAbstractDataset, ZDataset, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids;
 
 type
@@ -22,9 +22,11 @@ type
     Label4: TLabel;
     HapusBTMember: TButton;
     DBGrid1: TDBGrid;
+    ReportMember: TButton;
     procedure SimpanBTMemberClick(Sender: TObject);
     procedure EditBTMemberClick(Sender: TObject);
     procedure HapusBTMemberClick(Sender: TObject);
+    procedure ReportMemberClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,7 +40,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit1, Unit2, Unit3, Peminjaman;
+uses Unit1, Unit2, Unit3, Peminjaman, ReportMember;
 
 procedure TForm4.EditBTMemberClick(Sender: TObject);
 begin
@@ -61,11 +63,13 @@ begin
 begin
     // Update the record in the database using parameters
     try
-      QueryMember.Edit;
-      QueryMember.FieldByName('id_member').AsString := idMember.Text;
-      QueryMember.FieldByName('name').AsString := NamaInput.Text;
-      QueryMember.FieldByName('email').AsString := EmailInput.Text;
-      QueryMember.Post;
+    QueryMember.SQL.Text := 'UPDATE member SET name = :name, email = :email ' +
+                        'WHERE id_member = :id_member';
+    QueryMember.Params.ParamByName('id_member').AsString := idMember.Text;
+    QueryMember.Params.ParamByName('name').AsString := NamaInput.Text;
+    QueryMember.Params.ParamByName('email').AsString := EmailInput.Text;
+    QueryMember.ExecSQL;
+
       ShowMessage('Data Berhasil diupdate');
       Form5.isiComboBox;
       // Clear input fields after successful update
@@ -75,6 +79,7 @@ begin
       idMember.SetFocus;
       // Refresh the data in the grid
       QueryMember.Close;
+      QueryMember.SQL.Text := 'SELECT * FROM member'; // Adjust the query as needed
       QueryMember.Open;
     except
       on E: Exception do
@@ -85,12 +90,46 @@ end;
 
 procedure TForm4.HapusBTMemberClick(Sender: TObject);
 begin
-  if QueryMember.RecordCount <=0 then
-  MessageDlg('Data tidak ada', TMsgDlgType.mtWarning,[MBOK],0) else
-  QueryMember.Delete;
-  Form5.isiComboBox;
-  ShowMessage('Data dihapus');
+  if QueryMember.RecordCount <= 0 then
+  begin
+    MessageDlg('Data tidak ada', TMsgDlgType.mtWarning, [MBOK], 0);
+    Exit;
+  end;
 
+  if MessageDlg('Apakah Anda yakin ingin menghapus data ini?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    try
+      if idMember.Text = '' then
+      begin
+        MessageDlg('ID Member tidak boleh kosong.', mtWarning, [MBOK], 0);
+        Exit;
+      end;
+
+      QueryMember.SQL.Text := 'DELETE FROM member WHERE id_member = :id_member';
+      QueryMember.Params.ParamByName('id_member').AsString := idMember.Text;
+      QueryMember.ExecSQL;
+
+      ShowMessage('Data member berhasil dihapus.');
+      QueryMember.Close;
+      QueryMember.SQL.Text := 'SELECT * FROM member';
+      QueryMember.Open;
+
+      // Clear input fields after successful deletion
+      idMember.Text := '';
+      NamaInput.Text := '';
+      EmailInput.Text := '';
+      idMember.SetFocus;
+    except
+      on E: Exception do
+        MessageDlg('Error: ' + E.Message, mtError, [mbOK], 0);
+    end;
+  end;
+end;
+
+
+procedure TForm4.ReportMemberClick(Sender: TObject);
+begin
+  Form7.QuickRep1.Preview;
 end;
 
 procedure TForm4.SimpanBTMemberClick(Sender: TObject);
@@ -114,11 +153,12 @@ begin
   begin
     // Insert the new record into the database using parameters
     try
-      QueryMember.Append;
-      QueryMember.FieldByName('id_member').AsString := idMember.Text;
-      QueryMember.FieldByName('name').AsString := NamaInput.Text;
-      QueryMember.FieldByName('email').AsString := EmailInput.Text;
-      QueryMember.Post;
+      QueryMember.SQL.Text := 'INSERT INTO member (id_member, name, email) ' +
+                              'VALUES (:id_member, :name, :email)';
+      QueryMember.Params.ParamByName('id_member').AsString := idMember.Text;
+      QueryMember.Params.ParamByName('name').AsString := NamaInput.Text;
+      QueryMember.Params.ParamByName('email').AsString := EmailInput.Text;
+      QueryMember.ExecSQL;
       ShowMessage('Data berhasil disimpan.');
       Form5.isiComboBox;
 
@@ -130,6 +170,7 @@ begin
 
       // Refresh the data in the grid
       QueryMember.Close;
+      QueryMember.SQL.Text := 'SELECT * FROM member'; // Adjust the query as needed
       QueryMember.Open;
     except
       on E: Exception do

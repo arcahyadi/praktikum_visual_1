@@ -3,7 +3,7 @@ unit Unit1;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.UITypes, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ZAbstractConnection, ZConnection,
   Vcl.StdCtrls, Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset,
   Vcl.Grids, Vcl.DBGrids;
@@ -27,10 +27,12 @@ type
     DBGrid1: TDBGrid;
     Label4: TLabel;
     idInput: TEdit;
+    ReportAuthor: TButton;
     procedure SimpanBTClick(Sender: TObject);
     procedure EditBTClick(Sender: TObject);
     procedure HapusBTClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ReportAuthorClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,6 +45,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses ReportAuthor;
 
 procedure TForm1.EditBTClick(Sender: TObject);
 begin
@@ -86,10 +90,45 @@ end;
 
 procedure TForm1.HapusBTClick(Sender: TObject);
 begin
-if ZQuery1.RecordCount <=0 then
-MessageDlg('Data tidak ada', TMsgDlgType.mtWarning,[MBOK],0) else
-ZQuery1.Delete;
-ShowMessage('Data dihapus');
+  if ZQuery1.RecordCount <= 0 then
+  begin
+    MessageDlg('Data tidak ada', TMsgDlgType.mtWarning, [MBOK], 0);
+    Exit;
+  end;
+
+  if MessageDlg('Apakah Anda yakin ingin menghapus data ini?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    try
+      if idInput.Text = '' then
+      begin
+        MessageDlg('ID Member tidak boleh kosong.', mtWarning, [MBOK], 0);
+        Exit;
+      end;
+
+      ZQuery1.SQL.Text := 'DELETE FROM author WHERE id_author = :id_author';
+      ZQuery1.Params.ParamByName('id_author').AsString := idInput.Text;
+      ZQuery1.ExecSQL;
+
+      ShowMessage('Data Author berhasil dihapus.');
+      ZQuery1.Close;
+      ZQuery1.SQL.Text := 'SELECT * FROM author';
+      ZQuery1.Open;
+
+      idInput.Text := '';
+      NamaInput.Text := '';
+      EmailInput.Text := '';
+      idInput.SetFocus;
+
+    except
+      on E: Exception do
+        MessageDlg('Error: ' + E.Message, mtError, [mbOK], 0);
+    end;
+  end;
+end;
+
+procedure TForm1.ReportAuthorClick(Sender: TObject);
+begin
+  Form8.QuickRep1.Preview;
 end;
 
 procedure TForm1.SimpanBTClick(Sender: TObject);
