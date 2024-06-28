@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls;
 
 type
   TForm3 = class(TForm)
@@ -13,8 +13,13 @@ type
     Author2: TMenuItem;
     Buku1: TMenuItem;
     ManajemenBuku1: TMenuItem;
+    Member1: TMenuItem;
+    Label1: TLabel;
+    Peminjaman1: TMenuItem;
     procedure Author2Click(Sender: TObject);
     procedure ManajemenBuku1Click(Sender: TObject);
+    procedure Member1Click(Sender: TObject);
+    procedure Peminjaman1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,7 +33,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit1, Unit2;
+uses Unit1, Unit2, Member, Peminjaman;
 
 procedure TForm3.Author2Click(Sender: TObject);
 begin
@@ -38,6 +43,16 @@ end;
 procedure TForm3.ManajemenBuku1Click(Sender: TObject);
 begin
  Form2.Show;
+end;
+
+procedure TForm3.Member1Click(Sender: TObject);
+begin
+  Form4.Show;
+end;
+
+procedure TForm3.Peminjaman1Click(Sender: TObject);
+begin
+  Form5.Show;
 end;
 
 end.

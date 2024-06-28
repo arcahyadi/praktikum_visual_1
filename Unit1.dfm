@@ -15,7 +15,7 @@ object Form1: TForm1
   TextHeight = 15
   object Label1: TLabel
     Left = 32
-    Top = 18
+    Top = 8
     Width = 75
     Height = 16
     Caption = 'Data Author'
@@ -91,7 +91,7 @@ object Form1: TForm1
   object DBGrid1: TDBGrid
     Left = 32
     Top = 207
-    Width = 457
+    Width = 441
     Height = 218
     DataSource = DataSource1
     TabOrder = 5
@@ -100,6 +100,23 @@ object Form1: TForm1
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'id_author'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'name'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'email'
+        Width = 224
+        Visible = True
+      end>
   end
   object idInput: TEdit
     Left = 113
@@ -113,7 +130,6 @@ object Form1: TForm1
     Catalog = ''
     Properties.Strings = (
       'RawStringEncoding=DB_CP')
-    Connected = True
     DisableSavepoints = False
     HostName = 'localhost'
     Port = 3306
@@ -127,7 +143,6 @@ object Form1: TForm1
   end
   object ZQuery1: TZQuery
     Connection = ZConnection1
-    Active = True
     SQL.Strings = (
       'SELECT * FROM author')
     Params = <>

@@ -116,13 +116,13 @@ begin
     ZQuery1.FieldByName('name').AsString := NamaInput.Text;
     ZQuery1.FieldByName('email').AsString := EmailInput.Text;
     ZQuery1.Post;
-
     // Membersihkan input setelah penyimpanan
     idInput.Text := '';
     NamaInput.Text := '';
     EmailInput.Text := '';
     idInput.SetFocus;
-    
+    ShowMessage('Data berhasil disimpan');
+
   end;
 end;
 

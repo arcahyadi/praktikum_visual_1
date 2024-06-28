@@ -2,8 +2,8 @@ object Form3: TForm3
   Left = 0
   Top = 0
   Caption = 'Main Menu'
-  ClientHeight = 462
-  ClientWidth = 628
+  ClientHeight = 290
+  ClientWidth = 345
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,9 +12,22 @@ object Form3: TForm3
   Font.Style = []
   Menu = MainMenu1
   TextHeight = 15
+  object Label1: TLabel
+    Left = 64
+    Top = 48
+    Width = 200
+    Height = 16
+    Caption = 'Praktikum Visual 1 Kelompok 3'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object MainMenu1: TMainMenu
-    Left = 144
-    Top = 40
+    Left = 152
+    Top = 192
     object Author1: TMenuItem
       Caption = 'Author'
       object Author2: TMenuItem
@@ -28,6 +41,14 @@ object Form3: TForm3
         Caption = 'Manajemen Buku'
         OnClick = ManajemenBuku1Click
       end
+    end
+    object Member1: TMenuItem
+      Caption = 'Member'
+      OnClick = Member1Click
+    end
+    object Peminjaman1: TMenuItem
+      Caption = 'Peminjaman'
+      OnClick = Peminjaman1Click
     end
   end
 end

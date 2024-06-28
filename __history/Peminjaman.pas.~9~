@@ -1,0 +1,63 @@
+unit Peminjaman;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ZAbstractConnection,
+  ZConnection, Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset;
+
+type
+  TForm5 = class(TForm)
+    PeminjamanCon: TZConnection;
+    ComboBox1: TComboBox;
+    ZQuery2: TZQuery;
+    ZQuery2id_buku: TZIntegerField;
+    ZQuery2title: TZUnicodeStringField;
+    ZQuery2publication_year: TZIntegerField;
+    ZQuery2genre: TZUnicodeStringField;
+    ZQuery2author_id: TZIntegerField;
+    procedure FormCreate(Sender: TObject);
+  private
+  procedure isiComboBox;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form5: TForm5;
+
+implementation
+
+{$R *.dfm}
+
+uses Member, Unit1, Unit2, Unit3;
+
+procedure TForm5.FormCreate(Sender: TObject);
+begin
+    isiComboBox();
+end;
+
+procedure TForm5.isiComboBox;
+begin
+// Clear existing items
+  ComboBox1.Items.Clear;
+
+  // Open the query to fetch authors from the database
+  ZQuery2.Close;
+  ZQuery2.SQL.Text := 'SELECT * FROM buku ORDER BY title';
+  ZQuery2.Open;
+
+  // Populate the combobox with author names
+  while not ZQuery2.Eof do
+  begin
+    ComboBox1.Items.Add(ZQuery2.FieldByName('title').AsString);
+    ZQuery2.Next;
+  end;
+
+  // Close the query after fetching data
+  ZQuery2.Close;
+end;
+
+end.
+
