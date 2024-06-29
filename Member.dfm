@@ -115,6 +115,8 @@ object Form4: TForm4
       item
         Expanded = False
         FieldName = 'name'
+        Title.Caption = 'Nama'
+        Width = 220
         Visible = True
       end
       item
